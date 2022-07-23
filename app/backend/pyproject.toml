@@ -6,6 +6,8 @@ authors = ["Ivan Sharapenkov <ivansharapenkov@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+Django = "^4.0.6"
+crawler = {path = "deps/crawler"}
 
 [tool.poetry.dev-dependencies]
 
