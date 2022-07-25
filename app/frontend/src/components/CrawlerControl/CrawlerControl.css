@@ -12,12 +12,17 @@
 
 .CrawlerInput {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin: 30px 0 30px 0;
-    width: 90%;
 }
 
-.UrlInput {
+.UrlInputBlock {
+    display: flex;
+    flex-direction: row;
+    width: 700px;
+}
+
+.UrlInput, .NestingLimitInput {
     color: #282c34;
     padding: 5px;
     flex-grow: 1;
@@ -29,15 +34,18 @@
     background-color: #ffffff;
 }
 
-.UrlInput:focus, .UrlInput:hover {
+.NestingLimitInput:focus, .NestingLimitInput:hover, .UrlInput:focus, .UrlInput:hover {
     outline: 3px solid #282c34;
 }
 
-.UrlInput::placeholder {
+.NestingLimitInput::placeholder, .UrlInput::placeholder {
     color: rgba(40, 44, 52, 0.3);
 }
 
-.StartCrawlingButton {
+.StartCrawlingButton, .ClearButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
     outline: 2px solid #282c34;
     font-size: 24px;
@@ -45,9 +53,16 @@
     background-color: #282c34;
     border: none;
     transition: transform 0.2s;
+    width: 40px;
+    height: 40px;
 }
 
-.StartCrawlingButton:hover {
+.ClearButton {
+    width: 80px;
+    margin-left: 10px;
+}
+
+.StartCrawlingButton:hover, .ClearButton:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
@@ -57,42 +72,21 @@
     transform: none;
 }
 
-.CrawlResult {
+.OnlyNestedToUrlBlock {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    font-size: 24px;
+}
+
+.OnlyNestedToUrlInput {
+    width: 24px;
+    margin: 0 8px 0 0;
+}
+
+.TasksList {
     display: flex;
     flex-direction: column;
-}
-
-.CrawledLink {
-    text-decoration: none;
-    color: #282c34;
-}
-
-.CrawledLink:hover {
-    text-decoration: underline;
-}
-
-.Loader {
-  display: inline-block;
-  width: 80px;
-  height: 80px;
-}
-
-.Loader:after {
-  content: " ";
-  display: block;
-  width: 48px;
-  height: 48px;
-  margin: 8px;
-  border-radius: 50%;
-  border: 6px solid #282c34;
-  border-color: #282c34 transparent #282c34 transparent;
-  animation: Loader 1.2s linear infinite;
-}
-@keyframes Loader {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+    align-items: center;
+    width: 100%;
 }

@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  redis:
+    build:
+      context: ./redis
+
+  nginx:
+    image: nginx
+    restart: on-failure
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - static:/static
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./app/backend
+    depends_on:
+      - redis
+      - frontend
+    command: ['gunicorn', '-w', '4', '-b', '0.0.0.0:8000', 'backend.wsgi']
+    environment:
+      REDIS_HOST: redis
+      DEBUG: 'False'
+    ports:
+      - '8000:8000'
+
+  frontend:
+    build:
+      context: ./app/frontend
+    volumes:
+      - static:/static
+    command: bash -c "cp -r build /static/"
+
+  workers:
+    build:
+      context: ./crawler
+    command: ['supervisord', '-n', '-c', './configs/supervisord.conf']
+    environment:
+      REDIS_HOST: redis
+      MAX_NESTING_LIMIT: 2
+
+volumes:
+  static:

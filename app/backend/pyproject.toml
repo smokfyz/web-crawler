@@ -9,9 +9,23 @@ python = "^3.10"
 Django = "^4.0.6"
 redis = "^4.3.4"
 django-rq = "^2.5.1"
+gunicorn = "^20.1.0"
 
 [tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+pytest-black = "^0.3.12"
+pytest-flake8 = "^1.1.1"
+pytest-isort = "^3.0.0"
+pytest-mypy = "^0.9.1"
+isort = "^5.10.1"
+black = "^22.6.0"
+flake8 = "^4.0.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+target-version = ['py310']
+skip-string-normalization = true
+line-length = 79

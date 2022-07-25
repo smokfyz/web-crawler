@@ -1,14 +1,32 @@
 [tool.poetry]
 name = "crawler"
-version = "0.1.0"
+version = "0.1.46"
 description = "Simple Web Crawler"
 authors = ["Ivan Sharapenkov <ivansharapenkov@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+redis = "^4.3.4"
+rq = "^1.10.1"
+requests = "^2.28.1"
+supervisor = "^4.2.4"
 
 [tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+pytest-black = "^0.3.12"
+pytest-flake8 = "^1.1.1"
+pytest-isort = "^3.0.0"
+pytest-mypy = "^0.9.1"
+isort = "^5.10.1"
+flake8 = "^4.0.1"
+black = "^22.6.0"
+pytest-mock = "^3.8.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+target-version = ['py310']
+skip-string-normalization = true
+line-length = 79
