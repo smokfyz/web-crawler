@@ -7,7 +7,8 @@ authors = ["Ivan Sharapenkov <ivansharapenkov@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.10"
 Django = "^4.0.6"
-crawler = {path = "deps/crawler"}
+redis = "^4.3.4"
+django-rq = "^2.5.1"
 
 [tool.poetry.dev-dependencies]
 
