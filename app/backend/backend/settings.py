@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8i%y5%os3rzz-hxxesdm#3s*qw5%%-^97tw5u-ool59r0r*kc+'
+SECRET_KEY = (
+    'django-insecure-8i%y5%os3rzz-hxxesdm#3s*qw5%%-^97tw5u-ool59r0r*kc+'
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False if os.getenv('DEBUG') == 'False' else True
 
 ALLOWED_HOSTS = ['*']
 
@@ -31,7 +35,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'apps.crawler_api'
+    'apps.crawler_api',
     'django_rq',
 ]
 
@@ -39,26 +43,10 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'backend.middleware.JSONMiddleware'
+    'backend.middleware.JSONMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
@@ -66,7 +54,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {}
+DATABASES: dict = {}
 
 
 # Internationalization
@@ -105,10 +93,18 @@ LOGGING = {
     },
 }
 
+REDIS_HOST = os.getenv('REDIS_HOST', 'localhost')
+REDIS_PORT = os.getenv('REDIS_PORT', 6379)
+REDIS_DB = os.getenv('REDIS_DB', 0)
+
 RQ_QUEUES = {
     'default': {
-        'HOST': 'localhost',
-        'PORT': 6379,
-        'DB': 0,
+        'HOST': REDIS_HOST,
+        'PORT': REDIS_PORT,
+        'DB': REDIS_DB,
     }
+}
+
+RQ = {
+    'DEFAULT_RESULT_TTL': 0,
 }

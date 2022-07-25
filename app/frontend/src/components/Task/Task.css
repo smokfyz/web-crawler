@@ -1,0 +1,28 @@
+.TaskBlock {
+    display: flex;
+    flex-direction: column;
+    background-color: #61617c;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 600px;
+    margin-bottom: 10px;
+}
+
+.TaskInfoBlock {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.TaskInfo {
+    margin: 5px 5px 5px 0;
+}
+
+.CrawledUrls {
+    margin-top: 5px;
+    height: 200px;
+    resize: vertical;
+}
