@@ -66,7 +66,7 @@ function CrawlerControl() {
             value={String(nestingLimit)}
           />
           <input
-            type="url"
+            type="text"
             placeholder="URL to crawl"
             className="UrlInput"
             onChange={(e) => setUrl(e.target.value)}
@@ -102,8 +102,12 @@ function CrawlerControl() {
       </div>
       <div className="TasksList">
         {
-          tasks.map((task) =>
-            <Task key={task['hash']} hash={task['hash']} url={task['url']} />)
+          tasks.map((task, idx) =>
+            <Task
+              key={task['hash'] + String(tasks.length-idx)}
+              hash={task['hash']}
+              url={task['url']}
+            />)
         }
       </div>
     </div>
