@@ -17,7 +17,7 @@ Node: 16.15.1
 1. `git clone git@github.com:smokfyz/web-crawler.git`
 2. `cd web-crawler`
 3. `docker-compose up`
-4. Now web crawler available on `http://localhost`
+4. Now web crawler available on `http://127.0.0.1` or `http://localhost`
 
 ## Separate component deployment
 
