@@ -11,7 +11,7 @@ OS: MacOS 12.4
 Docker: 20.10.16  
 Docker-Compose: 1.29.2  
 Python: 3.10.5  
-Poetry: 1.1.14
+Poetry: 1.1.14  
 Node: 16.15.1
 
 1. `git clone git@github.com:smokfyz/web-crawler.git`
