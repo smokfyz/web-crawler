@@ -43,7 +43,7 @@ services:
     command: ['supervisord', '-n', '-c', './configs/supervisord.conf']
     environment:
       REDIS_HOST: redis
-      MAX_NESTING_LIMIT: 2
+      MAX_NESTING_LIMIT: 3
 
 volumes:
   static:
